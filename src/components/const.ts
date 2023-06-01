@@ -9,8 +9,8 @@ import testTreeN1 from "relatives-tree/samples/test-tree-n1.json";
 import testTreeN2 from "relatives-tree/samples/test-tree-n2.json";
 import type { Node } from "relatives-tree/lib/types";
 
-export const NODE_WIDTH = 70;
-export const NODE_HEIGHT = 80;
+export const NODE_WIDTH = 210;
+export const NODE_HEIGHT = 250;
 
 console.log("AVerage tree json", divorcedParents);
 
@@ -29,3 +29,14 @@ export const SOURCES = {
 export const DEFAULT_SOURCE = Object.keys(SOURCES)[0];
 
 export const URL_LABEL = "URL (Gist, Paste.bin, ...)";
+
+export const RELATION_TYPE = [
+  "Father",
+  "Mother",
+  "Brother",
+  "Sister",
+  "Son",
+  "Daughter",
+  "Wife",
+  "Husband",
+];

@@ -30,12 +30,12 @@ export const Relations = memo(function Relations({
   if (!items.length) return null;
 
   return (
-    <div>
-      <h4>{title}</h4>
+    <div className="flex flex-col ">
+      <h4 className="text-[60px] m-6 font-bold">{title}</h4>
       {items.map((item, idx) => (
         <div
           key={idx}
-          className={css.item}
+          className={`${css.item} m-3 ml-10 `}
           onClick={selectHandler(item.id)}
           onMouseEnter={hoverHandler(item.id)}
           onMouseLeave={clearHandler}

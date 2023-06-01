@@ -64,13 +64,13 @@ export default React.memo(function App() {
         </a>
       </header>
       {nodes.length > 0 && (
-        <PinchZoomPan min={0.5} max={2.5} captureWheel className={css.wrapper}>
+        <PinchZoomPan min={0.5} max={10} captureWheel className={css.wrapper}>
           <ReactFamilyTree
             nodes={nodes}
             rootId={rootId}
             width={NODE_WIDTH}
             height={NODE_HEIGHT}
-            className={css.tree}
+            className={`${css.tree}  `}
             renderNode={(node: Readonly<ExtNode>) => (
               <FamilyNode
                 key={node.id}

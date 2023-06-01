@@ -20,17 +20,24 @@ export const NodeDetails = memo(function NodeDetails({
   const closeHandler = useCallback(() => props.onSelect(undefined), [props]);
 
   return (
-    <section className={classNames(css.root, className)}>
-      <header className={css.header}>
+    <section
+      className={`classNames(css.root, className) h-full w-full bg-yellow-400 p-6 text-lg z-20`}
+    >
+      <header
+        className={`${css.header} flex flex-row text-[70px] p-6 justify-between`}
+      >
+        <div></div>
         <h3 className={css.title}>{node.id}</h3>
         <button className={css.close} onClick={closeHandler}>
           &#10005;
         </button>
       </header>
-      <Relations {...props} title="Parents" items={node.parents} />
-      <Relations {...props} title="Children" items={node.children} />
-      <Relations {...props} title="Siblings" items={node.siblings} />
-      <Relations {...props} title="Spouses" items={node.spouses} />
+      <div className="text-[50px] flex flex-col justify-between py-20 items-center">
+        <Relations {...props} title="Parents" items={node.parents} />
+        <Relations {...props} title="Children" items={node.children} />
+        <Relations {...props} title="Siblings" items={node.siblings} />
+        <Relations {...props} title="Spouses" items={node.spouses} />
+      </div>
     </section>
   );
 });
