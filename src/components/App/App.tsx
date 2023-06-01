@@ -1,4 +1,4 @@
-import React, { useMemo, useState, useCallback } from "react";
+import React, { useMemo, useState, useCallback, useEffect } from "react";
 import type { Node, ExtNode } from "relatives-tree/lib/types";
 import treePackage from "relatives-tree/package.json";
 import ReactFamilyTree from "react-family-tree";
@@ -15,6 +15,8 @@ export default React.memo(function App() {
   const [source, setSource] = useState(DEFAULT_SOURCE);
   const [nodes, setNodes] = useState(SOURCES[source]);
 
+  const [allNodes, setAllNodes] = useState([]);
+
   const firstNodeId = useMemo(() => nodes[0].id, [nodes]);
   const [rootId, setRootId] = useState(firstNodeId);
 
@@ -26,6 +28,14 @@ export default React.memo(function App() {
     [firstNodeId]
   );
 
+  useEffect(() => {
+    let testArray: any = [];
+    nodes.map((no) => {
+      testArray.push(no);
+    });
+
+    setAllNodes(testArray);
+  }, []);
   const changeSourceHandler = useCallback(
     (value: string, nodes: readonly Readonly<Node>[]) => {
       setRootId(nodes[0].id);
@@ -92,6 +102,7 @@ export default React.memo(function App() {
       )}
       {selected && (
         <NodeDetails
+          allNodes={allNodes}
           node={selected}
           className={css.details}
           onSelect={setSelectId}
