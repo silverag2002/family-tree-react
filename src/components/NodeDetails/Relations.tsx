@@ -4,7 +4,7 @@ import css from "./Relations.module.css";
 
 interface RelationsProps {
   title: string;
-  items: readonly Relation[];
+  items: any[];
   onSelect: (nodeId: string) => void;
   onHover: (nodeId: string) => void;
   onClear: () => void;

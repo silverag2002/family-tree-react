@@ -13,7 +13,7 @@ import css from "./App.module.css";
 
 export default React.memo(function App() {
   const [source, setSource] = useState(DEFAULT_SOURCE);
-  const [nodes, setNodes] = useState(SOURCES[source]);
+  const [nodes, setNodes] = useState<any>(SOURCES[source]);
 
   const [allNodes, setAllNodes] = useState([]);
 
@@ -30,25 +30,22 @@ export default React.memo(function App() {
 
   useEffect(() => {
     let testArray: any = [];
-    nodes.map((no) => {
+    nodes.map((no: any) => {
       testArray.push(no);
     });
 
     setAllNodes(testArray);
   }, []);
-  const changeSourceHandler = useCallback(
-    (value: string, nodes: readonly Readonly<Node>[]) => {
-      setRootId(nodes[0].id);
-      setNodes(nodes);
-      setSource(value);
-      setSelectId(undefined);
-      setHoverId(undefined);
-    },
-    []
-  );
+  const changeSourceHandler = useCallback((value: string, nodes: any[]) => {
+    setRootId(nodes[0].id);
+    setNodes(nodes);
+    setSource(value);
+    setSelectId(undefined);
+    setHoverId(undefined);
+  }, []);
 
   const selected = useMemo(
-    () => nodes.find((item) => item.id === selectId),
+    () => nodes.find((item: any) => item.id === selectId),
     [nodes, selectId]
   );
 
@@ -81,7 +78,7 @@ export default React.memo(function App() {
             width={NODE_WIDTH}
             height={NODE_HEIGHT}
             className={`${css.tree}  `}
-            renderNode={(node: Readonly<ExtNode>) => (
+            renderNode={(node: any) => (
               <FamilyNode
                 key={node.id}
                 node={node}
@@ -102,7 +99,7 @@ export default React.memo(function App() {
       )}
       {selected && (
         <NodeDetails
-          allNodes={allNodes}
+          allNodes={nodes}
           node={selected}
           className={css.details}
           onSelect={setSelectId}

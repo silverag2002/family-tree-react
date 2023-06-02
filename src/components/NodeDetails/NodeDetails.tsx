@@ -6,7 +6,7 @@ import css from "./NodeDetails.module.css";
 
 interface NodeDetailsProps {
   allNodes: any[];
-  node: Readonly<Node>;
+  node: any;
   className?: string;
   onSelect: (nodeId: string | undefined) => void;
   onHover: (nodeId: string) => void;
@@ -20,7 +20,36 @@ export const NodeDetails = memo(function NodeDetails({
   ...props
 }: NodeDetailsProps) {
   const [existRelation, setExistRelation] = useState("");
+  const [nodeSelected, setNodeSelected] = useState("");
+  const [listOfUnsuedRelations, setListOfUnusedRelations] = useState<any>([]);
   const closeHandler = useCallback(() => props.onSelect(undefined), [props]);
+
+  React.useEffect(() => {
+    let allRelations = [
+      ...node.children,
+      ...node.siblings,
+      ...node.spouses,
+      ...node.parents,
+    ];
+
+    console.log("All realtions", allRelations);
+    console.log("ALl nodes ", allNodes);
+
+    let newAllNodes = allNodes.filter((ad) =>
+      allRelations.every((fd) => fd.id !== ad.id)
+    );
+    console.log("All nodes test", newAllNodes);
+    setListOfUnusedRelations(newAllNodes);
+  }, []);
+
+  function handleSubmit() {
+    if (existRelation == "children") {
+      const check = node.children;
+      const format = { id: nodeSelected, type: "blood" };
+      check.push(format);
+    }
+  }
+  console.log("Node selected ", node);
 
   return (
     <section
@@ -85,13 +114,27 @@ export const NodeDetails = memo(function NodeDetails({
         </ul>
       </div>
 
-      <div id="existRelation">
-        <input type="text" placeholder={`Enter ${existRelation} name`} />
-        <select>
-          {allNodes.map((no) => (
+      <div id="existRelation" className="flex flex-col justify-center">
+        <span className="text-4xl">Enter Details of {existRelation}</span>
+        {/* <input
+          type="text"
+          className=" m-8 h-12"
+          placeholder={`Enter ${existRelation} name`}
+        /> */}
+        <select
+          onChange={(event) => setNodeSelected(event.target.value)}
+          className="h-12"
+        >
+          {listOfUnsuedRelations.map((no: any) => (
             <option>{no.id}</option>
           ))}
         </select>
+        <button
+          onClick={() => handleSubmit()}
+          className="bg-red-400 w-24 scale-150 m-8"
+        >
+          Submit
+        </button>
       </div>
     </section>
   );

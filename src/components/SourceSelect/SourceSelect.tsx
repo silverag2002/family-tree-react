@@ -4,8 +4,8 @@ import { URL_LABEL } from "../const";
 
 interface SourceSelectProps {
   value: string;
-  items: Record<string, readonly Readonly<Node>[]>;
-  onChange: (value: string, nodes: readonly Readonly<Node>[]) => void;
+  items: Record<string, any[]>;
+  onChange: (value: string, nodes: any[]) => void;
 }
 
 export const SourceSelect = memo(function SourceSelect({

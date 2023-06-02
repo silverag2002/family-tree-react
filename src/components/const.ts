@@ -12,7 +12,7 @@ import type { Node } from "relatives-tree/lib/types";
 export const NODE_WIDTH = 210;
 export const NODE_HEIGHT = 250;
 
-console.log("AVerage tree json", divorcedParents);
+console.log("AVerage tree json", diffParents);
 
 export const SOURCES = {
   "average-tree.json": averageTree,
@@ -24,7 +24,7 @@ export const SOURCES = {
   "simple-family.json": simpleFamily,
   "test-tree-n1.json": testTreeN1,
   "test-tree-n2.json": testTreeN2,
-} as Readonly<{ [key: string]: readonly Readonly<Node>[] }>;
+} as Readonly<{ [key: string]: any[] }>;
 
 export const DEFAULT_SOURCE = Object.keys(SOURCES)[0];
 

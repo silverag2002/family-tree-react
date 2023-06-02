@@ -2,7 +2,7 @@ import type { CSSProperties } from "react";
 import type { ExtNode } from "relatives-tree/lib/types";
 import { NODE_HEIGHT, NODE_WIDTH } from "../const";
 
-export function getNodeStyle({ left, top }: Readonly<ExtNode>): CSSProperties {
+export function getNodeStyle({ left, top }: any): CSSProperties {
   return {
     width: NODE_WIDTH,
     height: NODE_HEIGHT,
